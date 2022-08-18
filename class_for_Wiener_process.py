@@ -1,16 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
-
-
-# In[18]:
-
 
 class Wiener_Process:
     def __init__(self,T,m):
@@ -34,17 +24,7 @@ class Wiener_Process:
         plt.grid()
 
 
-# In[21]:
-
-
 T=2
 m=1000
 My_Wiener=Wiener_Process(T,m)
 My_Wiener.plot()
-
-
-# In[ ]:
-
-
-
-
