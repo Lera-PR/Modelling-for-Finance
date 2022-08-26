@@ -1,17 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[214]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-
-
-# In[215]:
-
 
 class Wiener_Process:
     def __init__(self,T,m):
@@ -51,7 +41,7 @@ class Geometric_Wiener_Process:
         plt.plot(x,self.S,'b')
         plt.grid()
         
-class Saving_Account:
+class Saving_Account: #simple deterministic process 
     def __init__(self,r,T,m):
         self.T=T
         self.r=r
@@ -68,86 +58,31 @@ class Saving_Account:
         plt.grid()
         
 
-
-# In[240]:
-
-
 T=10
 m=1000
-mu=0.15
+mu=0.15 #parameters for GMB
 sigma=0.1
 
-Average_GM=np.zeros([m,1])
-
-n=1000 #In this loop we generate 1000 paths of GBM and plot 10 of them. We do this to find average
-for i in range(0,n):
-    My_Wiener=Wiener_Process(T,m)
-    My_Geometric_Wiener=Geometric_Wiener_Process(My_Wiener,mu,sigma)
-    Average_GM=np.add(Average_GM,My_Geometric_Wiener.S)
-    if(i<10):
-        My_Geometric_Wiener.plot()
-    
-for i in range(0,m):
-    Average_GM[i]=Average_GM[i]/n
-x=np.linspace(0,T,m)
-plt.plot(x,Average_GM,'r')
-plt.grid()
-
-plt.show()
-
-
-# In[244]:
-
-
-r=0.05
+r=0.05 #interest rate for my saving account
 My_Saving_Account=Saving_Account(r,T,m)
 
-Average_S_over_M=np.zeros([m,1])
+Average_S_over_M=np.zeros([m,1]) #here I will keep my average discounted asset price path, calculated with Monte Carlo
 
-n=100 #In this loop we generate 1000 paths of GBM and plot 10 of them. We do this to find average
+n=100 #In this loop we generate n discounted GBM paths and plot 10 of them
 for i in range(0,n):
-    My_Wiener=Wiener_Process(T,m)
-    My_Geometric_Wiener=Geometric_Wiener_Process(My_Wiener,mu,sigma)
-    My_S_over_M=np.divide(My_Geometric_Wiener.S,My_Saving_Account.M)
-    Average_S_over_M=np.add(Average_S_over_M,My_S_over_M)
+    My_Wiener=Wiener_Process(T,m) #create Wiener process first
+    My_Geometric_Wiener=Geometric_Wiener_Process(My_Wiener,mu,sigma) #use Wiener process to genearate GBM path
+    My_S_over_M=np.divide(My_Geometric_Wiener.S,My_Saving_Account.M) #discount it with saving account
+    Average_S_over_M=np.add(Average_S_over_M,My_S_over_M) 
     if(i<10):
-        plt.plot(x, My_S_over_M,'b')
+        plt.plot(x, My_S_over_M,'b') #plot some dicounted process
         
 for i in range(0,m):
-    Average_S_over_M[i]=Average_S_over_M[i]/n
+    Average_S_over_M[i]=Average_S_over_M[i]/n #calculate average discounted process and plot it
     
 plt.plot(x,Average_S_over_M,'r')
     
 plt.grid()
 plt.show()
 
-
-# In[243]:
-
-
-#now let's try risk-neutral measure. Instead of the drift mu we use interest rate r.
-Average_S_over_M=np.zeros([m,1])
-
-n=100 #In this loop we generate 1000 paths of GBM and plot 10 of them. We do this to find average
-for i in range(0,n):
-    My_Wiener=Wiener_Process(T,m)
-    My_Geometric_Wiener=Geometric_Wiener_Process(My_Wiener,r,sigma)
-    My_S_over_M=np.divide(My_Geometric_Wiener.S,My_Saving_Account.M)
-    Average_S_over_M=np.add(Average_S_over_M,My_S_over_M)
-    if(i<10):
-        plt.plot(x, My_S_over_M,'b')
-        
-for i in range(0,m):
-    Average_S_over_M[i]=Average_S_over_M[i]/n
-    
-plt.plot(x,Average_S_over_M,'r')
-    
-plt.grid()
-plt.show()
-
-
-# In[ ]:
-
-
-
-
+#If drift mu>r, we have sub-martingale process. If mu=r, then martingale and if mu<r (why to buy this asset then?), it is a super-martingale
