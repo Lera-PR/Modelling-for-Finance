@@ -1,16 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[30]:
-
-
 import numpy as np
 import random
 import matplotlib.pyplot as plt
 import math
-
-
-# In[48]:
 
 
 class Wiener_Process:
@@ -52,9 +43,6 @@ class Geometric_Wiener_Process:
         plt.grid()
 
 
-# In[58]:
-
-
 #We need two GBM process
 mu_x=0.04
 sigma_x=0.12 # this can vary
@@ -77,15 +65,8 @@ lambd=0
 dt=T/m
 Z=np.zeros([m,1])
 for i in range(m):
-    Z[i]=2*X.S[i]/Y.S[i] - lambd*dt*i
+    Z[i]=2*X.S[i]/Y.S[i] - lambd*dt*i #make process Z and it will be a martingale depending on the parameters 
 x=np.linspace(0,T,m)
 plt.plot(x,Z)
 plt.grid()
 plt.show()
-
-
-# In[ ]:
-
-
-
-
