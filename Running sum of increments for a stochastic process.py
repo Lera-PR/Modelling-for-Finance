@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[21]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
@@ -50,15 +44,12 @@ class Geometric_Wiener_Process:
         plt.grid()
 
         
-def running_sum_of_squared_increments(S):
+def running_sum_of_squared_increments(S): #simple function for a running sum of squared increments in any array
     res=np.zeros([len(S)-1,1])
     res[0]=np.power((S[1]-S[0]),2)
     for i in range(1,len(S)-1):
         res[i]=res[i-1]+np.power((S[i+1]-S[i]),2)
     return res
-
-
-# In[29]:
 
 
 T=3
@@ -69,7 +60,7 @@ sigma=random.uniform(0.1,0.75)
 mu=random.uniform(0.01,0.1)
 print("Parameters: mu=",mu," sigma=",sigma)
 
-for i in range (10):
+for i in range (10): #generate 10 GBM with fixed parameters and plot them together with their running sums of squared increments
     My_Wiener = Wiener_Process(T,m)
     My_GBM=Geometric_Wiener_Process(My_Wiener,mu,sigma,S0)
     My_GBM.plot()
@@ -81,20 +72,13 @@ plt.grid()
 plt.show()
 
 
-# In[32]:
-
-
 df = pd.read_csv('HO.PA.csv')
-S = df.Close #here we have closing prices of HO.PA stock
+S = df.Close - df.Open #here we have daily returns of HO.PA daily stock
 plt.plot(S)
 plt.grid()
 
-delta_t=1
 running_sum=running_sum_of_squared_increments(S)
 plt.plot(running_sum)
-
-
-# In[ ]:
 
 
 
