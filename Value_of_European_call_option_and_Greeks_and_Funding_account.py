@@ -1,18 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[17]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
-
-
-# In[18]:
 
 
 class Wiener_Process:
@@ -54,15 +45,11 @@ class Geometric_Wiener_Process:
         plt.plot(x,self.S,'b')
         plt.grid()
         
-        
-
-
-# In[19]:
-
 
 def F(d):
     return norm.cdf(d) #this is a cumulitive function of a standard normal distribution
 
+#In the functions below I simply calculate the value of European call, and its Greeks
 def Delta_of_European_call_option(t,S,K,m,r,sigma,T):
     d1=(np.log(S/K)+(T-t)*(r+0.5*sigma**2))/(sigma*np.sqrt(T-t))
     return F(d1)
@@ -78,8 +65,6 @@ def Value_of_European_call_option(t,S,K,m,r,sigma,T):
     V=S*F(d1)-K*np.exp(-r*(T-t))*F(d2)
     return V
 
-
-# In[23]:
 
 
 T=1
@@ -104,22 +89,9 @@ for i in range(0,m):
     Delta[i]=Delta_of_European_call_option(i*d,My_GBM.S[i],K,m,r,sigma,T)
 plt.plot(t,Delta,'g')
 
-PnL=np.zeros([m,1])
-PnL[0]=V[0]-Delta[0]*My_GBM.S[0]
+PnL=np.zeros([m,1]) #Here calculate the funding account
+PnL[0]=V[0]-Delta[0]*My_GBM.S[0] #At first this is the value of the portfolio with European call and some stock
 for i in range(1,m-1):
-    PnL[i]=PnL[i-1]*np.exp(r*d)-My_GBM.S[i]*(Delta[i]-Delta[i-1])
-PnL[m-1]=PnL[m-2]*np.exp(r*d)-max(My_GBM.S[m-1]-K,0)+Delta[m-2]*My_GBM.S[m-1]
+    PnL[i]=PnL[i-1]*np.exp(r*d)-My_GBM.S[i]*(Delta[i]-Delta[i-1]) #I receive (or pay) interest on my previous portfolio and rebalance it
+PnL[m-1]=PnL[m-2]*np.exp(r*d)-max(My_GBM.S[m-1]-K,0)+Delta[m-2]*My_GBM.S[m-1] # At maturity date my call expires 
 plt.plot(t,PnL,'r')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
