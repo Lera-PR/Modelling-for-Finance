@@ -1,18 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
-
-
-# In[2]:
 
 
 class Wiener_Process:
@@ -55,14 +46,10 @@ class Geometric_Wiener_Process:
         plt.grid()
         
         
-
-
-# In[30]:
-
-
 def F(d):
     return norm.cdf(d) #this is a cumulitive function of a standard normal distribution
 
+#next two functions simply calculate value of a cash-or-nothing call option and its delta
 def Delta_of_cash_or_nothing_call_option(t,S,K,m,r,sigma,T,A):
     d2=(np.log(S/K)+(T-t)*(r-0.5*sigma**2))/(sigma*np.sqrt(T-t))
     delta=(A/S)*(np.exp(-r*(T-t)))/(sigma*np.sqrt(T-t))*np.exp(-d2**2/2)
@@ -72,9 +59,6 @@ def Value_of_cash_or_nothing_call_option(t,S,K,m,r,sigma,T,A):
     d2=(np.log(S/K)+(r-0.5*sigma**2)*(T-t))/(sigma*np.sqrt(T-t))
     V=A*np.exp(-r*(T-t))*F(d2)
     return V
-
-
-# In[47]:
 
 
 from matplotlib.pyplot import figure
@@ -103,10 +87,3 @@ for i in range(0,m):
     Delta[i]=Delta_of_cash_or_nothing_call_option(i*d,My_GBM.S[i],K,m,r,sigma,T,A)
 plt.plot(t,Delta)
 plt.show()
-
-
-# In[ ]:
-
-
-
-
