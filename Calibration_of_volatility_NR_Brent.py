@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[53]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
@@ -12,25 +6,20 @@ from scipy.stats import norm
 from mpl_toolkits import mplot3d
 
 
-# In[54]:
-
-
 def F(d):
     return norm.cdf(d) #this is a cumulitive function of a standard normal distribution
 
-def Value_of_European_call_option(t,S,K,r,sigma,T):
+def Value_of_European_call_option(t,S,K,r,sigma,T): # value of a European call option
     d1=(np.log(S/K)+(T-t)*(r+0.5*sigma**2))/(sigma*np.sqrt(T-t))
     d2=d1-sigma*np.sqrt(T-t)
     V=S*F(d1)-K*np.exp(-r*(T-t))*F(d2)
     return V
 
 
-# In[69]:
-
 
 #I calibrate parameter for volatility in the next two function using Combined Root Finding algorithm
-#and using Brent's method. Value function and its derivative are calculated with the BS model and this is
-#specifically for European call option
+#and using Brent's method. I am looking for the root of the function g(), and need its derivative for N-R method. 
+#Value function V() for European call option is derived with BS model
 
 def g(t0,S0,K,T,r,V_mkt,sigma): #this is function I optimise
     g=V_mkt - Value_of_European_call_option(t0,S0,K,r,sigma,T)
@@ -118,12 +107,6 @@ def Brent_method(t0,S0,K,T,r,V_mkt):
             g_k_2=g(t0,S0,K,T,r,V_mkt,sigma_k_2)
     return sigma_k
         
-    
-
-
-# In[70]:
-
-
 T=1
 K=120 #strike price
 S0=100
@@ -136,16 +119,3 @@ print(sigma)
 
 sigma=Brent_method(t0,S0,K,T,r,V_mkt)
 print(sigma)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
