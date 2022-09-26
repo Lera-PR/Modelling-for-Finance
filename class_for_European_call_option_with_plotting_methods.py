@@ -8,45 +8,6 @@ from mpl_toolkits import mplot3d
 def F(d):
     return norm.cdf(d) #this is a cumulitive function of a standard normal distribution
 
-class Wiener_Process:
-    def __init__(self,T,m):
-        W=[0]
-        S=0
-        self.T=T
-        self.m=m
-        delta_t=T/m
-        for i in range(1,m):
-            inc=random.gauss(0,math.sqrt(delta_t))
-            S=S+inc
-            W.append(S)
-        self.W=W
-        
-    def plot(self):
-        x=np.linspace(0,self.T,self.m)
-        fig = plt.figure()
-        plt.plot(x,self.W)
-        plt.grid()
-        
-class Geometric_Wiener_Process:
-    def __init__(self,My_WP,mu,sigma,S0):
-        T=My_WP.T
-        m=My_WP.m
-        S=np.ones([m,1])
-        S[0]=S0
-        delta_t=T/m
-        for i in range(1,m):
-            S[i]=S[i-1]*math.exp((mu-sigma*sigma/2)*delta_t)*math.exp(sigma*(My_WP.W[i]-My_WP.W[i-1]))
-        self.S=S
-        self.mu=mu
-        self.sigma=sigma
-        self.T=T
-        self.m=m
-    
-    def plot(self):
-        x=np.linspace(0,self.T,self.m)
-        plt.plot(x,self.S,'b')
-        plt.grid()
-        
 class European_call_option:
     def __init__(self,t,S,K,m,r,sigma,T): #just want all the parameters for some European call option
         self.t0=t
