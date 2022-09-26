@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[87]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
@@ -11,16 +5,8 @@ import numpy as np
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
 
-
-# In[88]:
-
-
 def F(d):
     return norm.cdf(d) #this is a cumulitive function of a standard normal distribution
-
-
-# In[109]:
-
 
 class Wiener_Process:
     def __init__(self,T,m):
@@ -103,6 +89,7 @@ class European_call_option:
         res=res+np.exp(-self.r*(self.T-self.t0))*np.exp(-d2**2/2)/(np.sqrt(2*math.pi)*np.sqrt(self.T-self.t0)*K*self.sigma)
         res=res+np.exp(-self.r*(self.T-self.t0))*np.exp(-d2**2/2)/(np.sqrt(2*math.pi)*(self.T-self.t0)*self.sigma**2*K)
         return res
+    
     
 class Dynamics_of_European_call_option:
     def __init__(self,t,S,K,m,r,sigma,T):
@@ -327,9 +314,6 @@ class Dynamics_of_European_call_option:
         ax.view_init(20, -120)
 
 
-# In[110]:
-
-
 T=1 #these are parameters for European call option
 m=100
 d=T/m # time step
@@ -338,42 +322,13 @@ K=10 #strike price
 S0=10
 r=0.05
 
-My_W=Wiener_Process(T,m) #create a Wiener process 
-
-My_GBM=Geometric_Wiener_Process(My_W,r,sigma,S0) #and create GBM based on the process and parameters
-My_GBM.plot()
-
-
-# In[111]:
-
 
 My_European_Call_option_Dynamics=Dynamics_of_European_call_option(0,S0,K,m,r,sigma,T)
 My_European_Call_option_Dynamics.plot_dynamics_of_value_of_ECO_in_t_S_coordinates()
 My_European_Call_option_Dynamics.plot_dynamics_of_value_of_ECO_in_t_K_coordinates()
 
-
-# In[112]:
-
-
 My_European_Call_option_Dynamics.plot_dynamics_of_dV_dK_of_ECO_in_t_S_coordinates()
 My_European_Call_option_Dynamics.plot_dynamics_of_dV_dK_of_ECO_in_t_K_coordinates()
 
-
-# In[113]:
-
-
 My_European_Call_option_Dynamics.plot_dynamics_of_d2V_dK2_of_ECO_in_t_S_coordinates()
 My_European_Call_option_Dynamics.plot_dynamics_of_d2V_dK2_of_ECO_in_t_K_coordinates()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
