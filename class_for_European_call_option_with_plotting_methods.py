@@ -62,7 +62,7 @@ class Dynamics_of_European_call_option:
         self.sigma=sigma
         self.T=T
         
-    def plot_dynamics_of_value_of_ECO_in_t_S_coordinates(self):
+    def plot_dynamics_of_value_of_ECO_t_S(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')                                    #option given GBM for stock prices                             
 
@@ -83,7 +83,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_value_of_ECO_in_t_K_coordinates(self):
+    def plot_dynamics_of_value_of_ECO_t_K(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')                                    #option given GBM for stock prices                             
 
@@ -104,7 +104,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_delta_of_ECO_in_t_S_coordinates(self):
+    def plot_dynamics_of_delta_of_ECO_t_S(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -125,7 +125,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_delta_of_ECO_in_t_K_coordinates(self):
+    def plot_dynamics_of_delta_of_ECO_t_K(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -146,7 +146,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_gamma_of_ECO_in_t_S_coordinates(self):
+    def plot_dynamics_of_gamma_of_ECO_t_S(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -168,7 +168,7 @@ class Dynamics_of_European_call_option:
         ax.view_init(20, -120)
         
         
-    def plot_dynamics_of_gamma_of_ECO_in_t_K_coordinates(self):
+    def plot_dynamics_of_gamma_of_ECO_t_K(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -190,7 +190,7 @@ class Dynamics_of_European_call_option:
         ax.view_init(20, -120)
         
         
-    def plot_dynamics_of_dV_dK_of_ECO_in_t_S_coordinates(self):
+    def plot_dynamics_of_dV_dK_of_ECO_t_S(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -211,7 +211,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_dV_dK_of_ECO_in_t_K_coordinates(self):
+    def plot_dynamics_of_dV_dK_of_ECO_t_K(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -232,7 +232,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_d2V_dK2_of_ECO_in_t_S_coordinates(self):
+    def plot_dynamics_of_d2V_dK2_of_ECO_t_S(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -253,7 +253,7 @@ class Dynamics_of_European_call_option:
 
         ax.view_init(20, -120)
         
-    def plot_dynamics_of_d2V_dK2_of_ECO_in_t_K_coordinates(self):
+    def plot_dynamics_of_d2V_dK2_of_ECO_t_K(self):
         fig = plt.figure()                                                #here we calculate and plot values of European call 
         ax = plt.axes(projection='3d')
         
@@ -285,11 +285,11 @@ r=0.05
 
 
 My_European_Call_option_Dynamics=Dynamics_of_European_call_option(0,S0,K,m,r,sigma,T)
-My_European_Call_option_Dynamics.plot_dynamics_of_value_of_ECO_in_t_S_coordinates()
-My_European_Call_option_Dynamics.plot_dynamics_of_value_of_ECO_in_t_K_coordinates()
+My_European_Call_option_Dynamics.plot_dynamics_of_value_of_ECO_t_S()
+My_European_Call_option_Dynamics.plot_dynamics_of_value_of_ECO_t_K()
 
-My_European_Call_option_Dynamics.plot_dynamics_of_dV_dK_of_ECO_in_t_S_coordinates()
-My_European_Call_option_Dynamics.plot_dynamics_of_dV_dK_of_ECO_in_t_K_coordinates()
+My_European_Call_option_Dynamics.plot_dynamics_of_dV_dK_of_ECO_t_S()
+My_European_Call_option_Dynamics.plot_dynamics_of_dV_dK_of_ECO_t_K()
 
-My_European_Call_option_Dynamics.plot_dynamics_of_d2V_dK2_of_ECO_in_t_S_coordinates()
-My_European_Call_option_Dynamics.plot_dynamics_of_d2V_dK2_of_ECO_in_t_K_coordinates()
+My_European_Call_option_Dynamics.plot_dynamics_of_d2V_dK2_of_ECO_t_S()
+My_European_Call_option_Dynamics.plot_dynamics_of_d2V_dK2_of_ECO_t_K()
