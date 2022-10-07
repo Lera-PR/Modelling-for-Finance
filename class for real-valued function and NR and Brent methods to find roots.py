@@ -1,19 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[146]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
-
-
-# In[176]:
-
 
 class function:
     def __init__(self,domain,rang):
@@ -50,10 +40,6 @@ class function:
         print("No such argument in the domain")
         return -111111
 
-
-# In[188]:
-
-
 def root_NR(My_function,l,r):
     #will try finding all the roots with MC
     v_l=My_function.value_at_point(l)
@@ -84,10 +70,6 @@ def root_NR(My_function,l,r):
             delta=-v_new/dv_new
             m=root_to_be #make N-R update
     return m
-
-
-# In[196]:
-
 
 def root_BM(My_function,l,r):
     v_l=My_function.value_at_point(l)
@@ -124,8 +106,8 @@ def root_BM(My_function,l,r):
     return k
 
 
-# In[197]:
-
+#Newton-Raphson method returns one root of the function on a given interval, if it exists.
+#Brent method does the same. They both return -11111 if there is no root at the interval (or if there is an even number of points)
 
 l=-5
 r=5
@@ -154,21 +136,4 @@ print(root)
 root=root_BM(My_func,m,r)
 print(root)
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+#here I find two roots of the given function. However, I have to use additional information - known number of roots.
