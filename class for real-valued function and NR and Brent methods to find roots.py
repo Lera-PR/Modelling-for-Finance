@@ -29,16 +29,21 @@ class function:
         derivative=function(self.domain[1:len(self.range)],der)
         return derivative
     
-    def value_at_point(self,x):
-        i=0
-        for d in self.domain:
-            temp=d-x
-            if abs(temp)<0.001:
-                res=self.range[i]
-                return res
-            i=i+1
-        print("No such argument in the domain")
-        return -111111
+   def value_at_point(self,x):
+        # if x is in the domain array, we are good. If not, we find two closest points, and take average
+        if x<self.domain[0] or x>self.domain[len(self.domain)-1]:
+            print("x is not in the domain")
+            return -11111
+        else:
+            l=self.domain[0]
+            i=0
+            while (l<x):
+                i=i+1
+                l=self.domain[i]
+            if(l==x):
+                return self.range[i]
+            else:
+                return 0.5*(self.range[i]+self.range[i+1])
 
 def root_NR(My_function,l,r):
     #will try finding all the roots with MC
@@ -90,6 +95,7 @@ def root_BM(My_function,l,r):
             root_to_be=root_to_be+k_2*v_k*v_k_1/((v_k_2-v_k)*(v_k_2-v_k_1))
             
             if root_to_be<l or root_to_be>r: #if new sigma is outside of the initial interval, we update the interval
+                v_new=My_function.value_at_point(root_to_be)
                 if v_new*v_l>0:
                     l=k
                 if v_new*v_l<0:
