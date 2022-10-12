@@ -1,19 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
-
-
-# In[2]:
-
 
 class function:
     def __init__(self,domain,rang):
@@ -74,10 +64,6 @@ class function:
                 i=i+1
             return S
 
-
-# In[3]:
-
-
 def a_hat(K,alpha,S0,beta,r,T,t0):
     SF=S0*np.exp(r*(T-t0))
     A=(SF*K)**((1-beta)/2)
@@ -109,9 +95,6 @@ def imp_volatility(K,gamma,alpha,S0,r,T,t0,beta,rho):
     return res
 
 
-# In[7]:
-
-
 def d_1(S0,r,K,T,t0,alpha,beta,gamma,rho):
     sigma=imp_volatility(K,gamma,alpha,S0,r,T,t0,beta,rho)
     res=(np.log(S0/K)+(r+0.5*sigma**2)*(T-t0))/(sigma*np.sqrt(T-t0))
@@ -130,10 +113,6 @@ def V_c(S0,r,K,T,t0,alpha,beta,gamma,rho):
     d2=d_2(S0,r,K,T,t0,alpha,beta,gamma,rho)
     V_c=S0*F(d1)-np.exp(-r*(T-t0))*K*F(d2)
     return V_c
-
-
-# In[42]:
-
 
 def check_call_spread_arbitrage(V_c_function):
     check=0
@@ -158,10 +137,6 @@ def check_call_butterfly_arbitrage(V_c_function):
             V_c_function.plot()
             return 1
     return 0    
-
-
-# In[44]:
-
 
 K=np.linspace(0.001,10,1000)
 Y=[]
@@ -207,10 +182,3 @@ for k in K:
         break
 if check==0:
     print("No calendar arbitrage")
-
-
-# In[ ]:
-
-
-
-
