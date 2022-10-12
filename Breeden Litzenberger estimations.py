@@ -1,19 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[137]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
-
-
-# In[170]:
-
 
 class function:
     def __init__(self,domain,rang):
@@ -75,9 +65,6 @@ class function:
             return S
 
 
-# In[171]:
-
-
 def sigma_imp(K):
     if(K>3):
         return 0.510-0.591*3+0.376*9-0.105*27+0.011*81
@@ -110,10 +97,6 @@ def V_p(S0,r,K,T,t0):
     return V_p
 #Ok, so far so good; For different values K we can calculate the prices for simple call and put options,
 
-
-# In[172]:
-
-
 #To make life easier (and to practice) I will make a multiplication operation for two functions.
 def multiplication(Func_1,Func_2):
     if(Func_1.domain[0]!=Func_2.domain[0]) or (Func_1.domain[len(Func_1.domain)-1]!=Func_2.domain[len(Func_2.domain)-1]):
@@ -128,9 +111,6 @@ def multiplication(Func_1,Func_2):
             new_range.append(temp)
         Result=function(new_domain,new_range)
         return Result
-
-
-# In[193]:
 
 
 K=np.linspace(0,10,1000) #all possible values for K
@@ -172,22 +152,3 @@ Func_2=function(S2,I2)
 
 res=Func_2.integral(S2[0],S2[-1])+Func_1.integral(S1[0],S1[-1])+Payoff_func.value_at_point(S0)
 print(res)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
