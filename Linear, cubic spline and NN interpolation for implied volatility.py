@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[177]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
@@ -11,10 +5,6 @@ import numpy as np
 from scipy.interpolate import CubicSpline
 from scipy.stats import norm
 from mpl_toolkits import mplot3d
-
-
-# In[178]:
-
 
 class function:
     def __init__(self,domain,rang):
@@ -77,9 +67,6 @@ class function:
             return S
 
 
-# In[209]:
-
-
 def d_1(S0,r,K,T,t0,sigma):
     res=(np.log(S0/K)+(r+0.5*sigma**2)*(T-t0))/(sigma*np.sqrt(T-t0))
     return res
@@ -102,10 +89,6 @@ def V_p(S0,r,K,T,t0,sigma):
     d2=d_2(S0,r,K,T,t0,sigma)
     V_p=np.exp(-r*(T-t0))*K*F(-d2)-S0*F(-d1)
     return V_p
-
-
-# In[221]:
-
 
 def find_r(k,K_array):
     i=0
@@ -207,10 +190,6 @@ def Cubic_spline_interpolation(K_array,imp_vol_array):
     fun=function(K,Y)
     return fun
 
-
-# In[222]:
-
-
 def check_call_butterfly_arbitrage(V_c_function):
     check=0
     for f in V_c_function.range:
@@ -218,10 +197,6 @@ def check_call_butterfly_arbitrage(V_c_function):
             print(f)
             return 1
     return 0
-
-
-# In[223]:
-
 
 K_array=[3.28, 5.46, 8.2, 10.93, 13.66, 16.39, 19.12, 21.86]
 imp_vol_array=[0.3137, 0.2249, 0.1491, 0.0909, 0.0685, 0.0809, 0.0945, 0.1063]
@@ -255,28 +230,3 @@ if(check==0):
     print("No butterfly arbitrage")
 else:
     print("There is butterfly arbitrage")
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
