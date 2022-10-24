@@ -1,17 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[6]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-
-
-# In[56]:
-
 
 class Poisson_Process:
     def __init__(self,T,m,psi):
@@ -51,9 +41,6 @@ class Compensated_Poisson_Process:
         plt.grid()
 
 
-# In[64]:
-
-
 T=30
 m=1000
 psi=1
@@ -68,16 +55,3 @@ for i in range(N):
 axis[0].grid()
 axis[1].grid()
 plt.show()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
