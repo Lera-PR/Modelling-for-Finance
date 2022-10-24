@@ -7,23 +7,26 @@ class Wiener_Process:
         W=[0]
         S=0
         delta_t=T/m
-        for i in range(0,m):
+        for i in range(0,m-1):
             inc=random.gauss(0,math.sqrt(delta_t))
             S=S+inc
             W.append(S)
         self.W=W
+        self.T=T
+        self.m=m
         
     def plot(self):
         fig = plt.figure()
-        plt.plot(self.W)
+        x=np.linspace(0,self.T,self.m)
+        plt.plot(x,self.W)
         plt.grid()
-  
- class Geometric_Wiener_Process:
+
+        
+class Geometric_Wiener_Process:
     def __init__(self,My_WP,mu,sigma):
         T=My_WP.T
-        m=My_WP.m
         S=np.ones([m,1])
-        delta_t=T/m
+        delta_t=T/My_WP.m
         for i in range(1,m):
             S[i]=S[i-1]*math.exp((mu-sigma*sigma/2)*delta_t)*math.exp(sigma*(My_WP.W[i]-My_WP.W[i-1]))
         self.S=S
@@ -36,6 +39,7 @@ class Wiener_Process:
         x=np.linspace(0,self.T,self.m)
         plt.plot(x,self.S)
         plt.grid()
+
 
 T=1
 m=200
