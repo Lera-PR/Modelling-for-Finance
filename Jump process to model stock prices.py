@@ -1,18 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[52]:
-
-
 import random
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.pyplot import figure
-
-
-# In[53]:
-
 
 class Poisson_Process:
     def __init__(self,T,m,psi):
@@ -53,15 +43,6 @@ class Wiener_Process:
         plt.grid()
 
 
-# In[ ]:
-
-
-
-
-
-# In[55]:
-
-
 delta_t=T/m
 r=0.05
 sigma=0.2
@@ -95,24 +76,3 @@ for n in range(N):
 axis[0].grid()
 axis[1].grid()
 plt.show()
-
-
-# In[62]:
-
-
-#Ok, I will try to add density 
-t=np.linspace()
-mu_bar=r-0.5*sigma**2 - psi*(np.exp((sigma_J**2)/2)-1)
-mu=X[0]+t*mu_bar+mu_J*psi*t
-var=t*sigma**2+psi*t*sigma_J**2
-y=np.linspace(0,10,10000)
-f_y=np.exp(-((y-mu)**2)/(2*var))/np.sqrt(2*math.pi*var)
-plt.plot(y,f_y)
-plt.grid()
-
-
-# In[ ]:
-
-
-
-
